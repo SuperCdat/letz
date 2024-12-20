@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xổ Số Kiến Thiết Miền Nam</title>
+</head>
+<body>
+
+  <table>
+    <tr id="network">
+    </tr>
+  </table>
+
+  <style>
+    body {
+      display: flex;
+      margin: 0 auto;
+      padding: 10px;
+    }
+    table, th {
+      border: 1px solid black;
+    }
+    table {
+      width: 100%;
+      table-layout: fixed;
+    }
+    table:nth-child(even) {
+      background-color: #DDDDDD;
+    }
+  </style>
+
+  
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getDatabase , ref , onChildAdded } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAp_XPhktCmOo4OWYEwDFm4wxz36AU_w-E",
+      authDomain: "neww-85685.firebaseapp.com",
+      databaseURL: "https://neww-85685-default-rtdb.firebaseio.com",
+      projectId: "neww-85685",
+      storageBucket: "neww-85685.firebasestorage.app",
+      messagingSenderId: "1092598028896",
+      appId: "1:1092598028896:web:4eb807ea2c03c9eedd0105"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase(app);
+    const rootRef = ref(db, "/WorkSpace/xs")
+
+    onChildAdded(rootRef, (snapshot) => {
+      let th = document.createElement("th")
+      th.innerText = snapshot.val().networkname
+      document.getElementById("network").appendChild(th)
+    })
+  </script>
+</body>
+</html>
